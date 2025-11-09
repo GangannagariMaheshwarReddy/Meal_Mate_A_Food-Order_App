@@ -3,43 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Restaurant Menu</title>
+    <style>
+        /* Reset and general styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: #fdfdfd;
+            color: #333;
+            padding: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #2b2b2b;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        /* Go to cart link */
+        .cart-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 25px auto;
+            text-decoration: none;
+            background-color: #ff7b00;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .cart-link:hover {
+            background-color: #ff9a3d;
+            transform: scale(1.05);
+        }
+
+        /* Table styling */
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #ff7b00;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        td img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        td a {
+            text-decoration: none;
+            background-color: #0077ff;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        td a:hover {
+            background-color: #005ecb;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
+            td img {
+                width: 60px;
+                height: 60px;
+            }
+            .cart-link {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h3>Welcome {{username}}!</h3>
 
-    <a href="{% url 'show_cart' username %}" >Go to cart</a>
+    <h3>Welcome {{ username }}!</h3>
 
-    <!-- show current menu -->
-    <table border="1">
+    <a href="{% url 'show_cart' username %}" class="cart-link">🛒 Go to Cart</a>
+
+    <table>
         <thead>
             <tr>
-                <th>Item name</th>
+                <th>Item Name</th>
                 <th>Picture</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Is veg?</th>
+                <th>Veg?</th>
                 <th>Operation</th>
             </tr>
         </thead>
         <tbody>
-            {%  for item in itemList %}
-                <tr>
-                    <td>{{ item.name }}</td>
-                    <td>
-                        <img src="{{ item.picture }}">
-                    </td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.vegeterian }}</td>
-                    <td>
-                        <a href="{% url 'add_to_cart' item.id username %}">
-                            Add to cart
-                        </a>
-                    </td>
-                </tr>
+            {% for item in itemList %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td><img src="{{ item.picture }}" alt="{{ item.name }}"></td>
+                <td>{{ item.description }}</td>
+                <td>₹{{ item.price }}</td>
+                <td>
+                    {% if item.vegeterian %}
+                        🥦 Yes
+                    {% else %}
+                        🍗 No
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'add_to_cart' item.id username %}">Add to Cart</a>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+    
 </body>
 </html>

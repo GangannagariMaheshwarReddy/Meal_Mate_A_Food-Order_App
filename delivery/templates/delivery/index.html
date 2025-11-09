@@ -1,14 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | Meal Buddy</title>
+    <style>
+        /* Reset defaults */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ff7b00, #ffb347);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container */
+        .welcome-container {
+            background: #fff;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-signup {
+            background-color: #ff7b00;
+            color: white;
+        }
+
+        .btn-signup:hover {
+            background-color: #ff9a3d;
+            transform: scale(1.05);
+        }
+
+        .btn-signin {
+            background-color: #0077ff;
+            color: white;
+        }
+
+        .btn-signin:hover {
+            background-color: #005ecb;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .welcome-container {
+                padding: 35px 25px;
+            }
+            h3 {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h3>Welcome to Meal Buddy!</h3>
 
-    <a href="open_signup">SIGN UP</a>
-    <br>
-    <a href="open_signin">SIGN IN</a>
+    <div class="welcome-container">
+        <h3>Welcome to Meal Buddy 🍽️</h3>
+        <p>Your friendly food ordering companion!</p>
+
+        <a href="open_signup" class="btn btn-signup">Sign Up</a><br>
+        <a href="open_signin" class="btn btn-signin">Sign In</a>
+    </div>
 
 </body>
 </html>

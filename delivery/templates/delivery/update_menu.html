@@ -1,58 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Menu | Meal Buddy Admin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff7b00, #ffb347);
+      min-height: 100vh;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e1d1cff;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-size: 26px;
+    }
+
+    .table-container {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      overflow-x: auto;
+      margin-bottom: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #ff7b00;
+      color: white;
+      font-weight: 600;
+    }
+
+    td img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #f0f0f0;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    /* Add Menu Form */
+    .form-container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="url"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 18px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ff7b00;
+      outline: none;
+      box-shadow: 0 0 4px rgba(255, 123, 0, 0.4);
+    }
+
+    input[type="checkbox"] {
+      transform: scale(1.3);
+      margin-right: 10px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #ff7b00;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e56f00;
+      transform: scale(1.03);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .back-link:hover {
+      color: #ff7b00;
+    }
+  </style>
 </head>
 <body>
-    <!-- show current menu -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Item name</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Is veg/</th>
-            </tr>
-        </thead>
-        <tbody>
-            {%  for item in itemList %}
-                <tr>
-                    <td>{{ item.name }}</td>
-                    <td>
-                        <img src="{{ item.picture }}">
-                    </td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.vegeterian }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
+
+  <h2>🍽️ Current Menu</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Picture</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Is Veg</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in itemList %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td><img src="{{ item.picture }}" alt="{{ item.name }}"></td>
+          <td>{{ item.description }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.vegeterian }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
+  </div>
 
+  <h2>➕ Add Menu Item</h2>
 
-    <!-- add food item (form) -->
-    <h2>Add Menu Item</h2>
+  <div class="form-container">
     <form action="{% url 'update_menu' restaurant.id %}" method="post">
-        {% csrf_token %}
-        <label for="name">Item Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+      {% csrf_token %}
+      <label for="name">Item Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter item name" required>
 
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea><br><br>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" placeholder="Describe the dish..." required></textarea>
 
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" step="0.01" required><br><br>
+      <label for="price">Price (₹):</label>
+      <input type="number" id="price" name="price" step="0.01" placeholder="Enter price" required>
 
-        <label for="vegeterian">Vegetarian:</label>
-        <input type="checkbox" id="vegeterian" name="vegeterian"><br><br>
+      <label for="vegeterian">
+        <input type="checkbox" id="vegeterian" name="vegeterian">
+        Vegetarian Item
+      </label>
 
-        <label for="picture">Image URL:</label>
-        <input type="url" id="picture" name="picture"><br><br>
+      <label for="picture">Image URL:</label>
+      <input type="url" id="picture" name="picture" placeholder="Paste image link">
 
-        <button type="submit">Add Item</button>
+      <button type="submit">Add Item</button>
     </form>
+
+    <a href="{% url 'open_show_restaurant' %}" class="back-link">← Back to Restaurants</a>
+  </div>
+
 </body>
 </html>

@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Failed | Meal Buddy</title>
 </head>
-<body>
-    <h3>login failed!</h3>
+<body style="background:linear-gradient(135deg, #ff7b00, #ffb347); height:100vh; margin:0; display:flex; justify-content:center; align-items:center; font-family:'Poppins', sans-serif;">
+
+  <div style="background:#fff; padding:40px 60px; border-radius:16px; box-shadow:0 8px 18px rgba(0,0,0,0.15); text-align:center;">
+    <h2 style="color:#ff7b00; margin-bottom:15px;">⚠️ Login Failed!</h2>
+    <p style="color:#555; font-size:16px; margin-bottom:25px;">Invalid username or password. Please try again.</p>
+
+    <a href="open_signin" 
+       style="display:inline-block; background-color:#ff7b00; color:white; padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:600; transition:0.3s;"
+       onmouseover="this.style.backgroundColor='#e56f00'"
+       onmouseout="this.style.backgroundColor='#ff7b00'">
+       🔁 Try Again
+    </a>
+  </div>
+
 </body>
 </html>

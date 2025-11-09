@@ -3,14 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Restaurants | Meal Buddy Admin</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff7b00, #ffb347);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        table {
+            width: 95%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #ff7b00;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        td img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        td a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        /* Buttons by type */
+        td a:nth-child(1) {
+            background-color: #0077ff; /* Update info */
+        }
+
+        td a:nth-child(2) {
+            background-color: #ff4747; /* Delete */
+        }
+
+        td a:nth-child(3) {
+            background-color: #28a745; /* Update Menu */
+        }
+
+        td a:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        tr:hover {
+            background-color: #fff9f0;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+            color: #fdfdfd;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            td img {
+                width: 60px;
+                height: 60px;
+            }
+
+            td a {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
-    
-    <table border="1">
+
+    <h2>🍴 All Restaurants</h2>
+
+    <table>
         <thead>
             <tr>
-                <th>Restaurant name</th>
+                <th>Restaurant Name</th>
                 <th>Picture</th>
                 <th>Cuisine</th>
                 <th>Rating</th>
@@ -18,31 +144,23 @@
             </tr>
         </thead>
         <tbody>
-            {%  for r in restaurantList %}
-                <tr>
-                    <td>{{ r.name }}</td>
-                    <td>
-                        <img src="{{ r.picture }}">
-                    </td>
-                    <td>{{ r.cuisine }}</td>
-                    <td>{{ r.rating }}</td>
-                    <td>
-                        <a href="{% url 'open_update_restaurant' r.id %}">
-                            Update Restaurant Info
-                        </a>
-                        <br>
-                        <a href="{% url 'delete_restaurant' r.id %}">
-                            Delete Restaurant
-                        </a>
-                        <br>
-                        <a href="{% url 'open_update_menu' r.id %}">
-                            Update Menu
-                        </a>
-                    </td>
-                </tr>
+            {% for r in restaurantList %}
+            <tr>
+                <td>{{ r.name }}</td>
+                <td><img src="{{ r.picture }}" alt="{{ r.name }}"></td>
+                <td>{{ r.cuisine }}</td>
+                <td>{{ r.rating }}</td>
+                <td>
+                    <a href="{% url 'open_update_restaurant' r.id %}">✏️ Update Info</a>
+                    <a href="{% url 'delete_restaurant' r.id %}">🗑️ Delete</a>
+                    <a href="{% url 'open_update_menu' r.id %}">📋 Update Menu</a>
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
-    
+
+    <a href="open_add_restaurant" class="back-link">➕ Add Another Restaurant</a>
+
 </body>
 </html>

@@ -3,13 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Page</title>
+    <title>Admin Dashboard | Meal Buddy</title>
+    <style>
+        /* Reset and general styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff7b00, #ffb347);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h3 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #0077ff;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: 0.3s;
+            margin: 10px 0;
+            width: 80%;
+        }
+
+        .btn:hover {
+            background-color: #005ecb;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h3 {
+                font-size: 22px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h3>Welcome to Admin HOME!</h3>
 
-    <a href="open_add_restaurant">ADD NEW RESTAURANT</a>
-    <br><br>
-    <a href="open_show_restaurant">SHOW RESTAURANTS</a>
+    <div class="container">
+        <h3>👨‍🍳 Welcome to Admin Dashboard!</h3>
+        <a href="open_add_restaurant" class="btn">➕ Add New Restaurant</a><br>
+        <a href="open_show_restaurant" class="btn">📋 Show All Restaurants</a>
+    </div>
+
+    <footer>Meal Buddy © 2025 | Admin Panel</footer>
+    <a href="open_signin" 
+   style="
+       display: block;
+       width: fit-content;
+       margin: 20px auto;
+       padding: 10px 20px;
+       background-color: #ff7b00;
+       color: white;
+       text-align: center;
+       border-radius: 8px;
+       text-decoration: none;
+       font-weight: 600;
+       cursor: pointer;
+       transition: 0.3s;
+   "
+   onmouseover="this.style.backgroundColor='#e56f00';"
+   onmouseout="this.style.backgroundColor='#ff7b00';"
+>← Back to Sign In Page</a>
+
 </body>
 </html>

@@ -3,25 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Restaurant</title>
+    <title>Add New Restaurant | Meal Buddy</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff7b00, #ffb347);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 40px 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #2b2b2b;
+            font-size: 26px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 18px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #ff7b00;
+            box-shadow: 0 0 4px rgba(255,123,0,0.5);
+            outline: none;
+        }
+
+        button {
+            background-color: #0077ff;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005ecb;
+            transform: scale(1.05);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #0077ff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 30px 25px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <form action="{% url 'add_restaurant' %}" method="post">
-        {% csrf_token %}
-        <label>Restaurant name </label>
-        <input type="text" name="name">
-        <br><br>
-        <label>Picture url </label>
-        <input type="text" name="picture">
-        <br><br>
-        <label>Cuisine </label>
-        <input type="text" name="cuisine">
-        <br><br>
-        <label>Rating</label>
-        <input type="number" name="rating" min="0" max="5" step="0.5">
-        <br><br>
-        <br><br>
-        <button type="submit">Add Restaurant</button>
-    </form>
+
+    <div class="form-container">
+        <h2>🍴 Add New Restaurant</h2>
+        <form action="{% url 'add_restaurant' %}" method="post">
+            {% csrf_token %}
+            
+            <label>Restaurant Name</label>
+            <input type="text" name="name" required>
+
+            <label>Picture URL</label>
+            <input type="text" name="picture" placeholder="https://example.com/image.jpg" required>
+
+            <label>Cuisine</label>
+            <input type="text" name="cuisine" placeholder="Italian, Indian, etc." required>
+
+            <label>Rating (0–5)</label>
+            <input type="number" name="rating" min="0" max="5" step="0.5" required>
+
+            <button type="submit">Add Restaurant</button>
+        </form>
+
+        <a href="open_show_restaurant" class="back-link">← Back to Restaurant List</a>
+    </div>
+
 </body>
 </html>

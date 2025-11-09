@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
 from django.http import HttpResponse
 
 from .models import Customer, Restaurant, Item, Cart
@@ -45,7 +47,7 @@ def signin(request):
 
     try:
         Customer.objects.get(username = username, password = password)
-        if username == 'admin':
+        if username == 'admin1':
             return render(request, 'delivery/admin_home.html')
         else:
             restaurantList = Restaurant.objects.all()
@@ -150,15 +152,23 @@ def view_menu(request, restaurant_id, username):
                      "restaurant" : restaurant, 
                      "username":username})
 
+
+
 def add_to_cart(request, item_id, username):
-    item = Item.objects.get(id = item_id)
-    customer = Customer.objects.get(username = username)
+    customer = get_object_or_404(Customer, username=username)
+    item = get_object_or_404(Item, id=item_id)
 
-    cart, created = Cart.objects.get_or_create(customer = customer)
+    # Get or create cart for the customer
+    cart, created = Cart.objects.get_or_create(customer=customer)
 
+    # Add item to cart
     cart.items.add(item)
 
-    return HttpResponse('added to cart')
+    # Redirect to show_cart page
+    return redirect('show_cart', username=username)
+
+
+
 
 def show_cart(request, username):
     customer = Customer.objects.get(username = username)
@@ -222,3 +232,11 @@ def orders(request, username):
         'cart_items': cart_items,
         'total_price': total_price,
     })
+
+def delete_from_cart(request, item_id, username):
+    customer = get_object_or_404(Customer, username=username)
+    cart = Cart.objects.filter(customer=customer).first()
+    if cart:
+        item = get_object_or_404(Item, id=item_id)
+        cart.items.remove(item)
+    return redirect('show_cart', username=username)

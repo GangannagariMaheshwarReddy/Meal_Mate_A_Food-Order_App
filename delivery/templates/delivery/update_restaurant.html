@@ -1,27 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Restaurant | Meal Buddy Admin</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff7b00, #ffb347);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 35px 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 480px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff7b00;
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 18px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #ff7b00;
+      outline: none;
+      box-shadow: 0 0 4px rgba(255, 123, 0, 0.4);
+    }
+
+    button {
+      width: 100%;
+      background-color: #ff7b00;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e56f00;
+      transform: scale(1.03);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #555;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .back-link:hover {
+      color: #ff7b00;
+    }
+  </style>
 </head>
 <body>
+
+  <div class="container">
+    <h2>✏️ Update Restaurant</h2>
     <form action="{% url 'update_restaurant' restaurant.id %}" method="post">
-        {% csrf_token %}
-        <label>Restaurant name </label>
-        <input type="text" name="name" value="{{restaurant.name}}">
-        <br><br>
-        <label>Picture url </label>
-        <input type="text" name="picture" value="{{restaurant.picture}}">
-        <br><br>
-        <label>Cuisine </label>
-        <input type="text" name="cuisine" value="{{restaurant.cuisine}}">
-        <br><br>
-        <label>Rating</label>
-        <input type="number" name="rating" min="0" max="5" step="0.5" value="{{restaurant.rating}}">
-        <br><br>
-        <br><br>
-        <button type="submit">Update Restaurant</button>
+      {% csrf_token %}
+      
+      <label>Restaurant Name</label>
+      <input type="text" name="name" value="{{restaurant.name}}" required>
+
+      <label>Picture URL</label>
+      <input type="text" name="picture" value="{{restaurant.picture}}" required>
+
+      <label>Cuisine</label>
+      <input type="text" name="cuisine" value="{{restaurant.cuisine}}" required>
+
+      <label>Rating</label>
+      <input type="number" name="rating" min="0" max="5" step="0.5" value="{{restaurant.rating}}" required>
+
+      <button type="submit">Update Restaurant</button>
     </form>
+
+    <a href="{% url 'open_show_restaurant' %}" class="back-link">← Back to Restaurants</a>
+  </div>
+
 </body>
 </html>
