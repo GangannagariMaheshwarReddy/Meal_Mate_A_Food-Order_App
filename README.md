@@ -12,7 +12,6 @@ This project is ideal for learning **Django CRUD operations, templating, and bas
 - Add, Update, and Delete Restaurants.
 - Add, Update, and Delete Menu Items.
 - Manage restaurant ratings and cuisines.
-- Admin dashboard for quick navigation.
 
 ### Customer Features
 - Browse restaurants and menus.
@@ -27,6 +26,6 @@ This project is ideal for learning **Django CRUD operations, templating, and bas
 - **Backend:** Django 5.2, Python 3.13  
 - **Frontend:** HTML5, CSS3, Django Templates  
 - **Database:** SQLite (default, can switch to MySQL)  
-- **Tools:** VS Code / PyCharm, Git, Browser for testing  
+- **Tools:** VS Code, Git, Browser for testing  
 
 ---
