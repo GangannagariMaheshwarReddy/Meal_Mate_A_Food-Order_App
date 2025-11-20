@@ -1,6 +1,6 @@
 # 🍽️ MealMate
 
-MealMate is an full-stack **Restaurant Management & Food Ordering System** built with **Django**. It provides a simple and intuitive interface for **Admins** to manage restaurants and menus, and for **Customers** to browse restaurants, view menus, and place orders.  
+MealMate is a full-stack **Restaurant Management & Food Ordering System** built with **Django**. It provides a simple and intuitive interface for **Admins** to manage restaurants and menus, and for **Customers** to browse restaurants, view menus, and place orders.  
 
 This project is ideal for learning **Django CRUD operations, templating, and web app design**.
 
