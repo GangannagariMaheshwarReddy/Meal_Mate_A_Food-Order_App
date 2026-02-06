@@ -23,7 +23,7 @@ This project is ideal for learning **Django CRUD operations, templating, and web
 
 ## Tech Stack
 
-- **Backend:** Django 5.2, Python 3.13  
+- **Backend:** Django 5.2, Python 3.13    
 - **Frontend:** HTML5, CSS3, Django Templates  
 - **Database:** SQLite (default, can switch to MySQL)  
 - **Tools:** VS Code, Git, Browser for testing  
